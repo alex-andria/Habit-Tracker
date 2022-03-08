@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
             render json:user, serializer: UserWithHabitsSerializer, status: :ok
         else
-            
+   
             render json: {error: "Invalid User name or password"}
         end
 
