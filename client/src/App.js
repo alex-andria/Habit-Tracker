@@ -1,25 +1,26 @@
 import logo from './logo.svg';
 import './App.css';
+import LogInPage from './LogInPage';
+import MainPage from './MainPage';
+import React, {useState} from 'react';
+
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [user, setUser]= useState(null)
+  const [errorMessage, setErrorMessage]= useState()
+  if(user===null){
+    return(
+      <LogInPage setUser={setUser} setErrorMessage={setErrorMessage} errorMessage={errorMessage}/>
+    )
+  }
+  if(user!==null){
+    return(
+    <> 
+  <MainPage user={user} setUser={setUser}/>
+    </>
+    )
+  }
 }
 
 export default App;
