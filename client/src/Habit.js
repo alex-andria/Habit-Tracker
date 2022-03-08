@@ -1,4 +1,5 @@
 import React from "react";
+import DailyProgressBar from "./DailyProgressBar";
 
 function Habit({habit}){
     console.log(habit)
@@ -15,6 +16,7 @@ function Habit({habit}){
             <h3>Number of days for goal:</h3>
             <p>{habit.goal_days}</p>
         </div>
+        <DailyProgressBar />
         
 
 
