@@ -26,7 +26,7 @@ class HabitsController < ApplicationController
     end
 
     def habit_params
-        params.permit(:habit_name, :goal_description, :goal_days, :goal_tracker, :user_id)
+        params.permit(:habit_name, :goal_description, :goal_days, :goal_tracker, :user_id, :color_code)
     end
 
 end

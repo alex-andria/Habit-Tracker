@@ -52,7 +52,7 @@ import React, {useState} from 'react'
             <br/>
 
             <label name="Password Input">Password</label>
-            <input name="Password Input" onChange={handlePasswordInputChange}></input>
+            <input type= 'password' name="Password Input" onChange={handlePasswordInputChange}></input>
 
             <br/>
 
