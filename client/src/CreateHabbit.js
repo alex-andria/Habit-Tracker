@@ -6,6 +6,7 @@ function CreateHabit({setShowCreateHabbitTab, user, showCreateHabbitTab}){
     const [goalDescriptionInput, setGoalDescriptionInput]= useState(null)
     const [goalDaysInput, setGoalDaysInput]= useState(null)
     const [habitColorInput, setHabitColorInput]= useState(null)
+    const [errorMessage, setErrorMessage]= useState(null)
 
 
 
@@ -34,7 +35,8 @@ function CreateHabit({setShowCreateHabbitTab, user, showCreateHabbitTab}){
             habit_name : habitNameInput,
             goal_description : goalDescriptionInput,
             goal_days : goalDaysInput,
-            user_id : user.id
+            user_id : user.id,
+            color_code : habitColorInput
         }
 
         fetch('http://localhost:3000/habits',{
@@ -46,8 +48,22 @@ function CreateHabit({setShowCreateHabbitTab, user, showCreateHabbitTab}){
         })
         .then(res => res.json())
         .then(data =>{
-            console.log(data)
-            return setShowCreateHabbitTab(false)
+
+            if(!data.errors){
+                console.log(data)
+                setShowCreateHabbitTab(false)
+            }
+            if(data.errors){
+                // console.log(data.errors)
+                // for(const key in data.errors){
+                //     return console.log(value, key)
+                // }
+                Object.values(data.errors).forEach(val => {
+                    console.log(val);
+                  });
+             }
+            
+            // return setShowCreateHabbitTab(false)
 
         })
 
@@ -64,6 +80,8 @@ function CreateHabit({setShowCreateHabbitTab, user, showCreateHabbitTab}){
         <> 
         <button onClick={handleBackButton}>Back</button>
         <h1> Create Your own Habbit </h1>
+
+        {errorMessage}
         <form>
             <label name="Habit name input">Habit Name:</label>
             <input onChange={handleHabitNameInput} name="Habit name input"></input>
