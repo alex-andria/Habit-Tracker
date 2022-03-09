@@ -15,8 +15,15 @@ class HabitsController < ApplicationController
 
     def update
         habit = find_habit
-        habit.update!(habit_params)
+        habit.update!(update_habit_params)
         render json: habit
+    end
+    
+    def destroy
+
+        find_habit.destroy
+        head :no_content
+
     end
 
     private
@@ -27,6 +34,10 @@ class HabitsController < ApplicationController
 
     def habit_params
         params.permit(:habit_name, :goal_description, :goal_days, :goal_tracker, :user_id, :color_code)
+    end
+
+    def update_habit_params
+        params.permit(:habit_name, :goal_description, :goal_days, :goal_tracker, :color_code)
     end
 
 end

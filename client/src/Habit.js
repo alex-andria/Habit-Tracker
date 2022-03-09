@@ -1,12 +1,16 @@
 import React from "react";
 import DailyProgressBar from "./DailyProgressBar";
+import HabitSettings from "./HabitSettings";
 
 function Habit({habit}){
+
+    
     console.log(habit)
 
     return(
 
         <> 
+        <HabitSettings habit={habit}/>
         <h2>{habit.habit_name}</h2>
         <div>
             <br/>
@@ -17,6 +21,8 @@ function Habit({habit}){
             <p>{habit.goal_days}</p>
         </div>
         <DailyProgressBar />
+        <br></br>
+        <br></br>
         
 
 
