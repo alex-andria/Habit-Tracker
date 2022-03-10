@@ -2,32 +2,35 @@ import "./App.css";
 import LogInPage from "./LogInPage";
 import MainPage from "./MainPage";
 import NavBar from "./NavBar";
-import React, { useState } from "react";
+import {Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 
 function App() {
+  // const [isAuthenticated, setIsAuthenticated] = useState(false)
   const [user, setUser] = useState(null);
-  const [errorMessage, setErrorMessage] = useState();
 
-  
-  if (user === null) {
-    return (
-      <div>
-        <LogInPage
-          setUser={setUser}
-          setErrorMessage={setErrorMessage}
-          errorMessage={errorMessage}
-        />
-      </div>
-    );
-  }
-  if (user !== null) {
-    return (
-      <div>
-        <NavBar user={user} setUser={setUser} />
-        <MainPage user={user} setUser={setUser} />
-      </div>
-    );
-  }
+  useEffect(() => {
+    // auto-login
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
+    
+  if (!user) return <LogInPage onLogin={setUser}/>;
+
+  return (
+    <>
+      <NavBar user={user} setUser={setUser} />
+      <main>
+        <Routes>
+          <Route path="/" element={<MainPage user={user} setUser={setUser}/> }/>
+        </Routes>
+      </main>
+    </>
+  );
 }
+
 
 export default App;

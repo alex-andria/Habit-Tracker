@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LogOutButton from "./LogOutButton";
 import Habit from "./Habit";
 import CreateHabit from "./CreateHabbit";
 
 function MainPage({ user, setUser }) {
-  console.log(user);
 
+  const [habits, setHabits] = useState([]);
   const [showCreateHabbitTab, setShowCreateHabbitTab] = useState(false);
+
+  console.log(habits);
 
   function handleCreateNewHabbitTab() {
     setShowCreateHabbitTab(!showCreateHabbitTab);
@@ -33,10 +35,11 @@ function MainPage({ user, setUser }) {
       <h2>Here are your habbits</h2>
 
       <br></br>
-
       <br></br>
 
-      {user.habits.map((h) => {
+
+      {/*has to be users.habits  */}
+      {habits.map((h) => {
         return <Habit habit={h} key={h.id} />;
       })}
     </>

@@ -5,13 +5,6 @@ import { Button } from "./styles";
 import Habit from './Habit.png'
 
 function NavBar({ user, setUser }) {
-  function handleLogoutClick() {
-    fetch("/logout", { method: "DELETE" }).then((r) => {
-      if (r.ok) {
-        setUser(null);
-      }
-    });
-  }
 
   return (
     <Wrapper>
@@ -19,12 +12,12 @@ function NavBar({ user, setUser }) {
         <Link to="/"><img className="logo" src={Habit}/> </Link>
       </Logo>
       <Nav>
-        <Button as={Link} to="/new">
+        {/* <Button as={Link} to="/new">
           Add Habit
         </Button>
         <Button variant="outline" onClick={handleLogoutClick}>
           Logout
-        </Button>
+        </Button> */}
       </Nav>
     </Wrapper>
   );

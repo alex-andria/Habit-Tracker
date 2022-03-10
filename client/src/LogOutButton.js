@@ -4,8 +4,11 @@ import React from "react";
 function LogOutButton({setUser}){
 
     function handleLogOut(){
-        return setUser(null)
-
+        fetch("http://localhost:3000/logout", { method: "DELETE" }).then((r) => {
+            if (r.ok) {
+                setUser(null);
+            }
+          });
     }
 
 
